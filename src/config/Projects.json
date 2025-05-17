@@ -1,0 +1,12 @@
+[
+    {
+        "title": "Cypher team",
+        "img": ["/img/CypherTeam/CypherTeam.jpg", "/img/CypherTeam/CypherTeam9.png", "/img/CypherTeam/CypherTeam10.png", "/img/CypherTeam/CypherTeam11.png","/img/CypherTeam/CypherTeam12.png", "/img/CypherTeam/CypherTeam13.png", "/img/CypherTeam/CypherTeam14.png", "/img/CypherTeam/CypherTeam15.png", "/img/CypherTeam/CypherTeam16.png", "/img/CypherTeam/CypherTeam17.png" ],
+        "shortDescription": "The Cypher Team website provides users with access to a wide variety of games. The platform has a modern and unique design that sets it apart from other gaming websites.",
+        "featuredWork": true,
+        "description": "The website was created using technologies: React, TypeScript, Redux Toolkit. The Cypher Team website provides users with access to a wide variety of games. The platform has a modern and unique design that sets it apart from other gaming websites.",
+        "WebSiteLink": "https://cypherteam.netlify.app/Login",
+        "GithubLink": "https://github.com/CypherTeamWeb/Cypher",
+        "id": 0
+    }
+]

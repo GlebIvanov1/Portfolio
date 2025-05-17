@@ -1,0 +1,202 @@
+.HeaderWrapper{
+    position: absolute;
+    top: 0px;
+    width: 100%; 
+    height: 70px;
+    background-color: #2D2D2D;
+    box-shadow: 0 2px 8px rgba(15, 52, 113, .03), 0 4px 20px rgba(15, 52, 113, .03);
+
+    .Logo{
+        position: absolute;
+        top: 50%;
+        margin-left: 50px;
+        transform: translateY(-50%);
+        font-size: 20px;
+        font-weight: 600;
+        color: #fff;
+        transition: 0.5s;
+        font-family: "Edu AU VIC WA NT Dots", serif;
+        animation: fade-in 1s;
+        user-select: none;
+
+        &:hover{
+            opacity: 0.7;
+            transform: translateY(-63%);
+        }
+    }
+
+    .MenuWrapper{
+        display: none;
+
+        @media screen and (max-width: 650px) {
+            display: block !important;
+        }
+
+        svg{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 20px;
+            cursor: pointer;
+            transition: 0.5s;
+
+            &:hover{
+                opacity: 0.7;
+            }
+        }
+    }
+
+    .Links{
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 150px;
+
+        @media screen and (max-width: 1238px) {
+            margin-right: 50px;
+        }
+
+        @media screen and (max-width: 650px) {
+            display: none;
+        }
+        
+        .userImg{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            transition: 0.5s;
+            animation: from-blottom-to-top 1s;
+            border-radius: 50%;
+
+            &:hover{
+                transform: translateY(-60%);
+                opacity: 0.7;
+            }
+        }
+        
+        a{
+            display: grid;
+            align-content: center;
+            padding-right: 30px;
+            color: #fff;
+            font-weight: 300;
+            margin-top: 10px;
+            z-index: 1;
+            height: 50px;
+            cursor: pointer;
+            transition: 0.5s;
+            animation: from-blottom-to-top 1s;
+            overflow: hidden;
+            user-select: none;
+
+            &::before{
+                content: '';
+                z-index: 100;
+                width: 100%;
+                height: 1px;
+                background-color: #ddd;
+                border-radius: 50px;
+                transform: scaleX(0) translateY(27px);
+                transition: 0.5s;
+                overflow: hidden;
+            }
+
+            &:hover::before{
+                transform: scaleX(1) translateY(27px);
+            }
+        }
+    }
+}
+
+.OpenMenuWrapper{
+    .menuOpenProfile{
+        position: absolute;
+        bottom: 30px;
+
+        .menuUserImg {
+            border-radius: 50%;
+            left: 50%;
+            transform: translate(-50%);
+            cursor: pointer;
+            transition: 0.5s;
+
+            &:hover {
+                opacity: 0.7;
+                transform: translate(-50%, -10px);
+            }
+        }
+    }
+
+    .menuOpenLoginWrapper{
+
+        .menuOpenLogin{
+            position: absolute;
+            white-space: nowrap;
+            color: #1f1f1f;
+            font-size: 20px;
+            bottom: 30px;
+            left: 50%;
+            transform: translate(-50%);
+        }
+    }
+
+    .MenuOpenProjectWrapper{
+        position: absolute;
+        top: 35%;
+        width: 400px;
+        height: 55px;
+        border-radius: 10px;
+        background-color: #ddd;
+        text-align: center;
+        transition: 0.5s;
+        box-shadow: 130px 20px 130px #fff;
+        user-select: none;
+
+        &:hover{
+            box-shadow: 0px 0px 100px #1F1F1F;
+            transform: translateY(-10px);
+        }
+
+        svg{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 100px;
+        }
+
+        a{
+            color: #1d1d1d;
+            font-size: 20px;
+            white-space: nowrap;
+            line-height: 55px;
+        }
+    }
+
+    .ContactWrapper{
+        top: 60%;
+        transform: translateY(-50%);
+        box-shadow: -130px 20px 130px #fff;
+
+        &:hover{
+            transform: translateY(-70%);
+        }
+    }
+}
+
+@keyframes from-blottom-to-top {
+    from{
+        opacity: 0;
+        scale: 0.9;
+        margin-top: 30px;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    from{
+        opacity: 0;
+        scale: 0.9;
+    }
+}
