@@ -1,3 +1,9 @@
+$backgroundColor: #1F1F1F;
+
+body{
+    overflow-x: hidden !important;
+}
+
 .ProjectsWrapper{
     .Back{
         position: fixed;
@@ -31,16 +37,18 @@
     .CardsWrapper{
         position: absolute;
         width: 100%;
-        top: 58%;
+        height: max-content;
+        top: 35%;
         display: flex;
-        gap: 20px;
-        margin-left: 70px;
-        transform: translateY(-50%);
-
+        gap: 65px;
+        flex-wrap: wrap;
+        padding-bottom: 100px;
+        background-color: $backgroundColor;
 
         .ProjectsCardWrapper{
             width: 600px;
             height: 400px;
+            margin-left: 60px;
 
             .imgWrapper{
                 width: 600px;

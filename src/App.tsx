@@ -8,7 +8,8 @@ import './firebase.js';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import NotFound from './Pages/NotFound';
 import FullCardFullPage from './Pages/ProjectsPage/FullCardFullPage.js';
-import ProjectsFullPageScroll from './Pages/ProjectsPage/ProjectsFullPage';
+// import ProjectsFullPageScroll from './Pages/ProjectsPage/ProjectsFullPage';
+import Projects from './Pages/ProjectsPage/Projects.js';
 import SettingsPage from './Pages/SettingsPage.js';
 import { setUser } from './redux/slices/userSlice.js';
 
@@ -39,7 +40,7 @@ const App: React.FC = () => {
             {isLoading && <h1 className='Loading'>Loading...</h1>}
             <Routes>
                 <Route path='/' element={<FullPageScroll />} />
-                <Route path='/projects' element={<ProjectsFullPageScroll />} />
+                <Route path='/projects' element={<Projects />} />
                 <Route path='/projects/:id' element={<FullCardFullPage />}/>
                 <Route path='/Login' element={<LoginPage />}/>
                 <Route path='/Settings' element={<SettingsPage onClose={() => null} />}/>
