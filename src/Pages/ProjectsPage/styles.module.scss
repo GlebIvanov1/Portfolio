@@ -13,6 +13,7 @@ body{
         margin-left: 50px;
         top: 15px;
         animation: from-top 1s;
+        z-index: 100;
     }
 
     .title{
@@ -25,6 +26,19 @@ body{
         cursor: pointer;
         transition: 0.5s;
         animation: from-left 1s;
+
+        @media screen and (max-width: 872px) {
+            margin-left: 80px;
+        }
+
+        @media screen and (max-width: 386px) {
+            text-align: center;
+            margin-left: 55px;
+        }
+
+        @media screen and (max-width: 338px) {
+            margin-left: 30px;
+        }
 
         &:hover{
             opacity: 0.7;
@@ -45,16 +59,90 @@ body{
         padding-bottom: 100px;
         background-color: $backgroundColor;
 
+        @media screen and (max-width: 1399px) {
+            gap: 5px;
+        }
+
+        @media screen and (max-width: 1338px) {
+            gap: 0;
+        }
+
+        @media screen and (max-width: 1238px) {
+            display: flex;
+            justify-content: center;
+        } 
+
         .ProjectsCardWrapper{
             width: 600px;
             height: 400px;
             margin-left: 60px;
+
+            @media screen and (max-width: 1338px) {
+                margin-left: 40px;
+            }
+
+            @media screen and (max-width: 1294px) {
+                margin-left: 20px;
+            }  
+            
+            @media screen and (max-width: 1238px) {
+                padding-bottom: 64px;
+            }
+
+            @media screen and (max-width: 663px) {
+                width: 500px;
+            }
+
+            @media screen and (max-width: 561px) {
+                width: 450px;
+                height: 350px;
+            }
+
+            @media screen and (max-width: 515px) {
+                width: 400px;
+                height: 300px;
+            }
+
+            @media screen and (max-width: 458px) {
+                width: 300px;
+                height: 225px;
+            }
+
+            @media screen and (max-width: 356px) {
+                width: 250px;
+                height: 200px;
+            }
 
             .imgWrapper{
                 width: 600px;
                 height: 400px;  
                 display: flex;
                 justify-content: flex-end;
+
+                @media screen and (max-width: 663px) {
+                    width: 500px;
+                }
+                
+                @media screen and (max-width: 561px) {
+                    width: 450px;
+                    height: 350px;
+                }
+
+                @media screen and (max-width: 515px) {
+                    width: 400px;
+
+                    height: 300px;
+                }
+
+                @media screen and (max-width: 458px) {
+                    width: 300px;
+                    height: 225px;
+                }
+
+                @media screen and (max-width: 356px) {
+                    width: 250px;
+                    height: 200px;
+                }
 
                 img{
                     width: 600px;
@@ -64,6 +152,30 @@ body{
                     animation: from-right 1s;          
                     cursor: pointer;   
                     transition: 0.5s; 
+
+                    @media screen and (max-width: 663px) {
+                        width: 500px;
+                    }
+                    
+                    @media screen and (max-width: 561px) {
+                        width: 450px;
+                        height: 350px;
+                    }
+
+                    @media screen and (max-width: 515px) {
+                        width: 400px;
+                        height: 300px;
+                    }
+
+                    @media screen and (max-width: 458px) {
+                        width: 300px;
+                        height: 225px;
+                    }
+
+                    @media screen and (max-width: 356px) {
+                        width: 250px;
+                        height: 200px;
+                    }
 
                     &:hover{
                         transform: translateY(-10px) rotate(1deg);
@@ -132,6 +244,7 @@ body{
         transform: translate(-50%, -50%);
         width: 1400px;
         height: 650px;
+        z-index: -100;
         
         .title{
             font-size: 48px;
@@ -706,8 +819,7 @@ body{
         transform: translate(-50%, -50%);
         width: 900px;
         height: 500px;
-        border: 2px dashed #fff;
-        border-bottom: 1px solid #fff;
+        border: 2px solid #fff;
         border-radius: 10px;
         overflow-y: scroll;
         overflow-x: hidden;

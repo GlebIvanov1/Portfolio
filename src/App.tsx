@@ -1,17 +1,17 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import React from 'react';
+import React, { lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router';
 import './App.scss';
 import FullPageScroll from './components/FullPageScroll';
 import './firebase.js';
-import LoginPage from './Pages/LoginPage/LoginPage';
-import NotFound from './Pages/NotFound';
-import FullCardFullPage from './Pages/ProjectsPage/FullCardFullPage.js';
-// import ProjectsFullPageScroll from './Pages/ProjectsPage/ProjectsFullPage';
-import Projects from './Pages/ProjectsPage/Projects.js';
-import SettingsPage from './Pages/SettingsPage.js';
 import { setUser } from './redux/slices/userSlice.js';
+
+const SettingsPage = lazy(() => import('./Pages/SettingsPage.js'));
+const Projects = lazy(() => import('./Pages/ProjectsPage/Projects.js'));
+const FullCardFullPage = lazy(() => import('./Pages/ProjectsPage/FullCardFullPage.js'));
+const NotFound = lazy(() => import('./Pages/NotFound'));
+const LoginPage = lazy(() => import('./Pages/LoginPage/LoginPage'));
 
 const App: React.FC = () => {
     const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const App: React.FC = () => {
                 <Route path='/projects' element={<Projects />} />
                 <Route path='/projects/:id' element={<FullCardFullPage />}/>
                 <Route path='/Login' element={<LoginPage />}/>
-                <Route path='/Settings' element={<SettingsPage onClose={() => null} />}/>
+                <Route path='/Settings' element={<SettingsPage />}/>
                 <Route path='*' element={<NotFound />}/>
             </Routes>
         </div>

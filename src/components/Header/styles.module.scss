@@ -152,6 +152,18 @@
         box-shadow: 130px 20px 130px #fff;
         user-select: none;
 
+        @media screen and (max-width: 508px) {
+            width: 350px;
+        }
+
+        @media screen and (max-width: 456px) {
+            width: 300px;
+        }
+
+        @media screen and (max-width: 385px) {
+            width: 250px;
+        }
+
         &:hover{
             box-shadow: 0px 0px 100px #1F1F1F;
             transform: translateY(-10px);
@@ -162,6 +174,18 @@
             top: 50%;
             transform: translateY(-50%);
             left: 100px;
+
+            @media screen and (max-width: 508px) {
+                left: 65px;
+            }
+
+            @media screen and (max-width: 456px) {
+                left: 50px;
+            }
+
+            @media screen and (max-width: 385px) {
+                left: 30px;
+            }
         }
 
         a{

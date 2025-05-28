@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, useEffect, useState } from 'react';
 import ContactButton from '../components/ContactButton';
-import Header from '../components/Header/Header';
+
+const Header = lazy(() => import('../components/Header/Header'));
 
 const Home: React.FC = () => {
     const [pageActive, setPageActive] = useState(true);

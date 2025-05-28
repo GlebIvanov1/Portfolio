@@ -4,12 +4,14 @@ interface initialStateType {
     email: string;
     token: string;
     id: string;
+    profileImg: {profileImg: string};
 }
 
 const initialState: initialStateType = {
     email: '',
     token: '',
-    id: ''
+    id: '',
+    profileImg: {profileImg: ''}
 }
 
 export const userSlice = createSlice({
@@ -25,9 +27,12 @@ export const userSlice = createSlice({
             state.email = '';
             state.token = '';
             state.id = '';
+        },
+        setProfileImg: (state, action) => {
+            state.profileImg.profileImg = action.payload.profileImg;
         }
     }
 })
 
-export const {setUser, removeUser} = userSlice.actions;
+export const { setUser, removeUser, setProfileImg } = userSlice.actions;
 export default userSlice.reducer;
