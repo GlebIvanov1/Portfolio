@@ -548,6 +548,54 @@ main{
             }
         }
 
+        .settingsSectionsWrapper{
+            position: absolute;
+            width: 70%;
+            height: 65%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            user-select: none;
+
+            .accountSection{
+                width: 100%;
+                border-bottom: 1px solid gray;
+                display: flex;
+                justify-content: center;
+
+                svg{
+                    margin-right: 10px;
+                    margin-top: 13px;
+                }
+
+                p{
+                    color: #fff;
+                }
+
+                .accountSectionInfo{
+                    position: absolute;
+                    width: 90%;
+                    height: 80%;
+                    top: 90px;
+
+                    p{
+                        cursor: pointer;
+                    }
+
+                    .UploadImgLabel{
+                        p{
+                            margin-left: 44px;
+                            transform: translateY(-47px);
+                        }
+
+                        svg{
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+
         button{
             width: 200px;
             height: 50px;

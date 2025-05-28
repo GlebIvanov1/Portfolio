@@ -137,8 +137,11 @@ const FullCardCommentsSection: React.FC = () => {
     
     const setMessagesMenuOpenFunction = ({id}: {id: number}) => {
         const newMessages = messagesReducer?.id[ProjectId]?.[id].commentsId;
+        const messagesId = messagesReducer.id[ProjectId];
+        const messagesIdComment = messagesId?.[id];
+        const messageEmail = messagesIdComment?.commentsId[0]?.email;
         
-        setMessagesMenuOpen({id: messagesMenuOpen.id === newMessages?.[id].id ? null : newMessages?.[id].id, open: true});
+        setMessagesMenuOpen({id: !messageEmail ? newMessages?.[id].id : null, open: messagesMenuOpen.id === id ? !messagesMenuOpen.open : true});
     }
 
     const EditMessage = () => {
@@ -198,14 +201,14 @@ const FullCardCommentsSection: React.FC = () => {
                                         <p key={index} style={{position: 'relative'}}>{message}</p>
                                         <svg onClick={() => setMessagesMenuOpenFunction({id})} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className={styles.messageMenu} viewBox="0 0 16 16"><path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/></svg>
 
-                                        {messagesMenuOpen.open && messagesMenuOpen.id === messagesReducer.messages.indexOf(message) &&
-                                                <div className={styles.OpenMessagesMenu}>
-                                                    <div className={styles.EditWrapper} onClick={EditMessage}>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/></svg>
-                                                        <span>Edit</span>
-                                                    </div>
+                                        {messagesMenuOpen.open && messagesMenuOpen.id === messagesReducer.messages.indexOf(message) ?
+                                            <div className={styles.OpenMessagesMenu}>
+                                                <div className={styles.EditWrapper} onClick={EditMessage}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/></svg>
+                                                    <span>Edit</span>
                                                 </div>
-                                        }
+                                            </div>
+                                        : null}
                                     </div>
                                 )
                                 })
