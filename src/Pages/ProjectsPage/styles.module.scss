@@ -4,6 +4,10 @@ body{
     overflow-x: hidden !important;
 }
 
+*{
+    z-index: -10 !important;
+}
+
 .ProjectsWrapper{
     .Back{
         position: fixed;
@@ -322,7 +326,7 @@ body{
                 top: 54.5%;
                 transform: translateY(-50%);
                 cursor: pointer;
-                z-index: 10000;
+                z-index: 10000 !important;
                 transition: 0.5s;
 
                 @media screen and (max-width: 1449px) {
@@ -575,6 +579,8 @@ body{
             .Buttons{
                 position: absolute;
                 bottom: 90px;
+                user-select: none;
+                z-index: 100;
 
                 @media screen and (max-width: 1347px) {
                     bottom: 120px;
@@ -709,11 +715,11 @@ body{
                     }
 
                     &:hover{
-                        transform: translate(10%, -10px);
+                        transform: translate(0, -10px);
                         opacity: 0.7;
 
                         @media screen and (max-width: 1080px) {
-                            
+                            transform: translate(10%, -10px);
                         }
                     }
                 }

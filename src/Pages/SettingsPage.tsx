@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import DefaultUserImg from '../../public/img/person-circle.svg';
 import { useOptimizeImage } from "../Hooks";
 import { userInputValueSet } from "../redux/slices/settingsSlice";
+import { setUser } from "../redux/slices/userSlice";
 
 const SettingsPage: React.FC = () => {
     const auth = getAuth();
@@ -59,6 +60,11 @@ const SettingsPage: React.FC = () => {
 
         if(confirmSignOut){
             signOut(auth);
+            dispatch(setUser({
+                    email: '',
+                    id: '',
+                    token: ''
+            }))
             redirect('/#home')
         }
     }

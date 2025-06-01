@@ -145,6 +145,62 @@
     }
 }
 
+.VerifyWrapper{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 500px;
+    border-radius: 10px;
+    background-color: #fff;
+
+    .VerifyPageTitle{
+        position: absolute;
+        top: 2%;
+        left: 50%;
+        transform: translate(-50%);
+        white-space: nowrap;
+        user-select: none;
+    }
+
+    .VerifyButton{
+        position: absolute;
+        left: 50%;
+        top: 55%;
+        width: 300px;
+        height: 50px;
+        transform: translate(-50%, -50%);
+        outline: none;
+        background-color: transparent;
+        border: 1px solid #111;
+        user-select: none;
+    }
+
+    .VerifyInfo{
+        position: absolute;
+        left: 50%;
+        bottom: 120px;
+        transform: translate(-50%);
+        text-align: center;
+        width: 650px;
+        font-weight: 500;
+    }
+
+    .sendMessageAgain{
+        position: absolute;
+        text-align: center;
+        left: 50%;
+        bottom: 10px;
+        font-size: 20px;
+        transform: translate(-50%);
+        color: #0000FF;
+        white-space: nowrap;
+        cursor: pointer;
+        user-select: none;
+    }
+}
+
 @keyframes from-top {
     from{
         opacity: 0.6;

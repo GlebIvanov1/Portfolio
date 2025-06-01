@@ -182,6 +182,7 @@ const FullCardCommentsSection: React.FC = () => {
         }
     }
 
+    
     return (
         <>
             <div className={styles.CommentsSectionWrapper}>
