@@ -1,4 +1,4 @@
 declare module 'fullpage.js'{
-    const content: Reacord<any, any>;
+    const content: Rescord<any, any>;
     export default content
-}
+};

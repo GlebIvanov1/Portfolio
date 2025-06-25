@@ -3,6 +3,7 @@ $backgroundColor: #1F1F1F;
 
 .section{
     width: 100vw;
+    height: 100vh;    
 }
 
 .fp-watermark{
@@ -18,6 +19,14 @@ body{
 
 ul{
     list-style-type: none
+}
+
+.dontVerifiedEmailAlert{
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1000 !important;
 }
 
 .Loading{
@@ -37,7 +46,19 @@ main{
         margin-left: 150px;
         border-left: 1px solid gray;
         top: 40%;
-        transform: translateY(-50%);
+        transform: translateY(-50%);     
+
+        // @media screen and (max-height: 547px){
+        //     top: 67% !important;
+        // }
+
+        // @media screen and (max-height: 505px){
+        //     top: 80% !important;            
+        // }     
+        
+        // @media screen and (max-height: 376px){
+        //     top: 63% !important;
+        // }
 
         .title{
             color: #fff;
@@ -47,6 +68,10 @@ main{
             user-select: none;
             cursor: pointer;
             animation: fade-in 1s;
+
+            @media screen and (max-height: 505px){
+                font-size: 40px;
+            }
 
             &:hover{
                 margin-left: 40px;
@@ -67,6 +92,10 @@ main{
             width: 400px;
             text-align: center;
             animation: from-left-to-right 1s;
+
+            @media screen and (max-height: 505px){
+                font-size: 20px;
+            }
 
             &:hover{
                 margin-left: 45px;
@@ -103,6 +132,28 @@ main{
                 transform: translate(-50%, -50%);
             }
 
+            // @media screen and (max-height: 620px){
+            //     width: 250px;
+            //     height: 200px;
+            // }
+
+            // @media screen and (max-height: 547px){
+            //     top: 35%;
+            // }
+
+            // @media screen and (max-height: 505px){
+            //     top: 43%;            
+            // }   
+            
+            // @media screen and (max-height: 441px){
+            //     width: 230px;
+            //     height: 150px;            
+            // }
+
+            // @media screen and (max-height: 376px){
+            //     display: none !important;
+            // }            
+
             &:hover{
                 transform: translateY(-53%);
                 box-shadow: 0px 0px 50px gray;
@@ -128,6 +179,10 @@ main{
         @media screen and (max-width: 571px) {
             margin-left: 23%;
         }
+
+        @media screen and (max-height: 505px){
+            display: none !important;
+        }        
 
         .ContactButton{
             @media screen and (max-width: 471px) {
@@ -487,126 +542,6 @@ main{
     }
 }
 
-.SettingsWrapper{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-
-    .Back{
-        position: absolute;
-        color: #ddd;
-        left: 25px;
-        top: 10px;
-        z-index: 1000;
-        transition: 0.5s;
-        animation: opacity 1s;
-
-        &:hover{
-            opacity: 0.7;
-        }
-    }
-    
-    h1{
-        position: absolute;
-        color: #fff;
-        top: 20px;
-        left: 50px;
-        animation: fade-in 1s;
-    }
-
-    .emailPreview{
-        position: absolute;
-        top: 60px;
-        right: 150px;
-        color: rgba(255, 254, 254, 0.696);
-        user-select: none;
-        cursor: pointer;
-        animation: from-bottom-to-top 1s;
-    }
-
-    .settings{
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        animation: opacity 1s;
-
-        .changeImgWrapper{
-            .UploadImgLabel{
-                position: absolute;
-                cursor: pointer;
-                transition: 0.5s;
-                user-select: none;
-                right: 120px;
-
-                img{
-                    position: absolute;
-                    border-radius: 50%;
-                    top: 65px;
-                    cursor: pointer;
-                }
-            }
-        }
-
-        .settingsSectionsWrapper{
-            position: absolute;
-            width: 70%;
-            height: 65%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            user-select: none;
-
-            .accountSection{
-                width: 100%;
-                border-bottom: 1px solid gray;
-                display: flex;
-                justify-content: center;
-
-                svg{
-                    margin-right: 10px;
-                    margin-top: 13px;
-                }
-
-                p{
-                    color: #fff;
-                }
-
-                .accountSectionInfo{
-                    position: absolute;
-                    width: 90%;
-                    height: 80%;
-                    top: 90px;
-
-                    p{
-                        cursor: pointer;
-                    }
-
-                    .UploadImgLabel{
-                        p{
-                            margin-left: 44px;
-                            transform: translateY(-47px);
-                        }
-
-                        svg{
-                            cursor: pointer;
-                        }
-                    }
-                }
-            }
-        }
-
-        button{
-            width: 200px;
-            height: 50px;
-            position: absolute;
-            bottom: 30px !important;
-            left: 50%;
-            transform: translate(-50%);
-        }
-    }
-}
-
 
 .footer{
     position: absolute;
@@ -666,14 +601,6 @@ main{
                 transform: translateY(-10px);
             }
         }
-    }
-}
-
-.settings{
-    #file-input{
-        display: none;
-        position: absolute;
-        z-index: -1;
     }
 }
 

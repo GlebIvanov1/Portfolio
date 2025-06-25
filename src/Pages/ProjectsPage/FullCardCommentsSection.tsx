@@ -1,3 +1,4 @@
+import { getAuth } from "firebase/auth";
 import { child, get, getDatabase, onValue, ref, set, update } from "firebase/database";
 import React, { ChangeEvent, useEffect, useReducer, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -53,11 +54,13 @@ const FullCardCommentsSection: React.FC = () => {
     const dbRef = ref(getDatabase());
     const isLogin = useIsLogin();
     const [messagesReducer, ReducerDispatch] = useReducer(reducer, initialState);
-    const [messagesMenuOpen, setMessagesMenuOpen] = useState({id: null, open: false});
+    const [messagesMenuOpen, setMessagesMenuOpen] = useState<{id: null | number, open: boolean}>({id: null, open: false});
     const email = useSelector((state: any) => state.user.email);
     const [editPage, setEditPage] = useState(false);
     const [editInputValue, setEditInputValue] = useState('');
     const inputRef = useRef<any>(null);
+    const auth = getAuth();
+    const user: any = auth?.currentUser;
 
     useEffect(() => {
         const setMessages = onValue(ref(db, 'projectComments/' + String(ProjectId)), (snapshot) => {
@@ -135,13 +138,12 @@ const FullCardCommentsSection: React.FC = () => {
         })
     }
     
-    const setMessagesMenuOpenFunction = ({id}: {id: number}) => {
-        const newMessages = messagesReducer?.id[ProjectId]?.[id].commentsId;
+    const setMessagesMenuOpenFunction = ({ids}: {ids: number}) => {
         const messagesId = messagesReducer.id[ProjectId];
-        const messagesIdComment = messagesId?.[id];
-        const messageEmail = messagesIdComment?.commentsId[0]?.email;
+        const messagesIdComment = messagesId[ids];
+        const messageEmail = messagesIdComment?.commentsId?.[ids].email;
         
-        setMessagesMenuOpen({id: !messageEmail ? newMessages?.[id].id : null, open: messagesMenuOpen.id === id ? !messagesMenuOpen.open : true});
+        setMessagesMenuOpen({id: email === messageEmail ? ids : null, open: messagesMenuOpen.id === ids ? !messagesMenuOpen.open : true});
     }
 
     const EditMessage = () => {
@@ -182,6 +184,9 @@ const FullCardCommentsSection: React.FC = () => {
         }
     }
 
+     const dontSendMessage = async () => {
+        alert('Verify your email to get access to all features. You can do it in your profile (press on your profile picture)');
+    }
     
     return (
         <>
@@ -192,17 +197,18 @@ const FullCardCommentsSection: React.FC = () => {
                     {(messagesReducer.messages || []).length === 0 ? <CommentsEmpty /> : 
                         <div>
                             {(messagesReducer.messages || []).map((message: string, index: number) => {
-                                const profileImgPath = messagesReducer.id[ProjectId]?.[index];
-                                const profileImg = profileImgPath?.commentsId?.[messagesReducer.messages.indexOf(message)]?.profileImg; 
+                                const ProjectIdPath = messagesReducer.id[ProjectId]?.[index];
+                                const profileImg = ProjectIdPath?.commentsId?.[index]?.profileImg;
                                 const id = messagesReducer.messages.indexOf(message);
+                                const messageEmail = ProjectIdPath?.commentsId?.[index].email;
                                     
                                 return(
                                     <div className={styles.messageWrapper}>
                                         <img src={profileImg || DefaultUserImg} width={35} height={35} alt="userImg" />
                                         <p key={index} style={{position: 'relative'}}>{message}</p>
-                                        <svg onClick={() => setMessagesMenuOpenFunction({id})} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className={styles.messageMenu} viewBox="0 0 16 16"><path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/></svg>
+                                        {messageEmail === email && <svg onClick={() => setMessagesMenuOpenFunction({ids: id})} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className={styles.messageMenu} viewBox="0 0 16 16"><path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/></svg>}
 
-                                        {messagesMenuOpen.open && messagesMenuOpen.id === messagesReducer.messages.indexOf(message) ?
+                                        {messagesMenuOpen.open && messagesMenuOpen.id === index ?
                                             <div className={styles.OpenMessagesMenu}>
                                                 <div className={styles.EditWrapper} onClick={EditMessage}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/></svg>
@@ -220,7 +226,7 @@ const FullCardCommentsSection: React.FC = () => {
                     <div className={styles.InputWrapper}>
                         <img src={userImg || DefaultUserImg} width={userImg ? 45 : 35} height={userImg ? 45 : 35} alt="userImg" />
                         <input value={inputValue} onChange={(e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)} type="text" placeholder="Type your comment..." />
-                        <div onClick={sendOnClick} className={styles.Send}><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/></svg></div>
+                        <div onClick={isLogin && user?.emailVerified ? sendOnClick : dontSendMessage} className={styles.Send}><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/></svg></div>
                     </div>
                 </div>
             </div>

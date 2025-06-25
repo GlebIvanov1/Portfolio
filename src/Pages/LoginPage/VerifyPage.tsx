@@ -57,7 +57,7 @@ const VerifyPage: React.FC = () => {
     const sendVerifyAgain = async () => {
         const user = auth.currentUser;
 
-        if(user && verifyColdown === 0){
+        if(user && verifyColdown <= 0){
             try{
                 await sendEmailVerification(user);
                 alert('Verify message send again.');

@@ -4,13 +4,13 @@ import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { setUser } from "../../redux/slices/userSlice";
-import { decrementVerifyCooldown, setVerifyColdown } from '../../redux/slices/VerifyPageSlice';
+import { decrementVerifyCooldown, setVerifyColdown, setVerifyPageOpen } from '../../redux/slices/VerifyPageSlice';
 import styles from './styles.module.scss';
 import VerifyPage from './VerifyPage';
 
 const LoginPage: React.FC = () => {
     const [isEng, setIsEng] = useState(true);
-    const [isRegister, setIsRegister] = useState(true);
+    const [isRegister, setIsRegister] = useState(false);
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const auth = getAuth();
@@ -18,11 +18,11 @@ const LoginPage: React.FC = () => {
     const [error, setError] = useState('');
     const dispatch = useDispatch();
     const [user, SetUser] = useState<any>();
-    const [verifyPage, setVerifyPage] = useState(false);
+    const verifyPage = useSelector((state: any) => state.verifyPage.verifyPageOpen);
     const [emailVerified, setEmailVerified] = useState();
     const intervalRef = useRef<number | null>(null);
     const verifyColdown = useSelector((state: any) => state.verifyPage.verifyColdown);
-
+    
     useEffect(() => {
         auth.onAuthStateChanged((user: any) => {
             user?.reload().then(() => {
@@ -53,7 +53,7 @@ const LoginPage: React.FC = () => {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
             if(userCredential.user){
-                setVerifyPage(true);
+                dispatch(setVerifyPageOpen(true));
                 await sendEmailVerification(userCredential.user);
                 dispatch(setVerifyColdown(60));
 
@@ -66,7 +66,7 @@ const LoginPage: React.FC = () => {
 
             if(user?.emailVerified || emailVerified){
                 alert('Email has been successfully confirmed!');
-                setVerifyPage(false);
+                dispatch(setVerifyPageOpen(false));
                 setEmail('');
                 setPassword('');
                 redirect('/#home');
@@ -104,21 +104,24 @@ const LoginPage: React.FC = () => {
             <div className={styles.LoginPageWrapper} style={{display: verifyPage ? 'none' : ''}}>
                 <a href="/#home" className={styles.back}>{isEng ? 'Back' : 'Вернуться'}</a>
 
-                <h1 style={{marginLeft: isRegister && !isEng ? '100px' : ''}}>{isRegister ? isEng ? 'Register' : 'Регистрация' : isEng ? "Login" : 'Войти'}</h1>
+                <div className={styles.wrapper}>
+                    <h1 style={{marginLeft: isRegister && !isEng ? '100px' : ''}}>{isRegister ? isEng ? 'Register' : 'Регистрация' : isEng ? "Login" : 'Войти'}</h1>
 
-                <div className={styles.Lang}>
-                    <span onClick={() => setIsEng(true)} style={{fontWeight: isEng ? '600' : '', transform: isEng ? 'translateY(-10px)' : ''}} className={styles.Eng}>Eng</span>
-                    <span onClick={() => setIsEng(!isEng)}>/</span>
-                    <span onClick={() => setIsEng(false)} style={{fontWeight: !isEng ? '600' : '', transform: !isEng ? 'translateY(-10px)' : ''}} className={styles.Ru}>Ru</span>
-                </div>
+                    <div className={styles.Lang}>
+                        <span onClick={() => setIsEng(true)} style={{fontWeight: isEng ? '600' : '', transform: isEng ? 'translateY(-10px)' : ''}} className={styles.Eng}>Eng</span>
+                        <span onClick={() => setIsEng(!isEng)}>/</span>
+                        <span onClick={() => setIsEng(false)} style={{fontWeight: !isEng ? '600' : '', transform: !isEng ? 'translateY(-10px)' : ''}} className={styles.Ru}>Ru</span>
+                    </div>
 
-                <div className={styles.inputWrapper}>
-                    <input value={email} onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} className={styles.Email} type="email" placeholder="Email" /> 
-                    <input value={password} onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} className={styles.Paswword} type="password" placeholder="Paswword" />
-                    {!isRegister && <a href="">{isEng ? 'Forget your password?' : 'Забыли пароль?'}</a>}
-                    <p style={{top: isRegister ? '110%' : '81%', marginLeft: !isRegister && !isEng ? '30px' : ''}} className={styles.SetRegister} onClick={() => setIsRegister(!isRegister)}>
-                        {isRegister ? isEng ? 'Login' : 'Войти' : isEng ? 'Register' : 'Зарегистрироваться' }
-                    </p>
+                    <div className={styles.inputWrapper}>
+                        <input value={email} onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} className={styles.Email} type="email" placeholder="Email" /> 
+                        <input value={password} onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} className={styles.Paswword} type="password" placeholder="Paswword" />
+                        {!isRegister && <a href="/Login/ForgotPassword">{isEng ? 'Forget your password?' : 'Забыли пароль?'}</a>}
+                        <p style={{top: isRegister ? '110%' : '81%', marginLeft: !isRegister && !isEng ? '30px' : ''}} className={styles.SetRegister} onClick={() => setIsRegister(!isRegister)}>
+                            {isRegister ? isEng ? 'Login' : 'Войти' : isEng ? 'Register' : 'Зарегистрироваться' }
+                        </p>
+                    </div>
+
                 </div>
 
                 <div onClick={isRegister ? Register : Login} className={styles.submit}>{isRegister ? isEng ? 'Register' : 'Зарегистрироваться' : isEng ? "Login" : 'Войти'}</div>

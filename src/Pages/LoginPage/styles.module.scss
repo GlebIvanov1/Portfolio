@@ -8,6 +8,93 @@
     border: 4px solid #d9363e;
 }
 
+.ForgotPasswordPageWrapper{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    .Back{
+        position: absolute;
+        top: 20px;
+        left: 40px;
+        color: #fff;
+        transition: 0.5s;
+        animation: from-top 1s;
+
+        &:hover{
+            opacity: 0.7;
+        }
+    }
+
+    .Wrapper{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 500px;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+    
+    .title{
+        position: absolute;
+        color: #111;
+        left: 50%;
+        top: 20px;
+        transform: translate(-50%);
+        white-space: nowrap;
+        font-size: 40px;
+        font-weight: 500;
+        animation: from-top 1s;
+    }
+
+    p{
+        position: absolute;
+        top: 42%;
+        left: 93px;
+        transform: translateY(-50%);
+        animation: from-left 1s;
+    }
+
+    input{
+        position: absolute;
+        padding-left: 10px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%);
+        border: 2px solid gray;
+        outline: none;
+        border-radius: 8px;
+        width: 400px;
+        height: 35px;
+        background-color: transparent;
+        transition: 0.8s;
+        animation: from-bottom 1s;
+
+        &:hover{
+            opacity: 0.7;
+        }
+    }
+
+    button {
+        position: absolute;
+        width: 250px;
+        height: 40px;
+        border: 1px solid #111;
+        bottom: 50px;
+        left: 50%;
+        transform: translate(-50%);
+        transition: 0.5s;
+        animation: from-left 1s;
+
+        &:hover{
+            opacity: 0.7;
+        }
+    }
+}
+
 .LoginPageWrapper{
     width: 100%;
     height: 100%;
@@ -27,23 +114,68 @@
         }
     }
 
+    .wrapper{
+        width: 610px;
+        height: 440px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
     h1{
         color: #fff;
         position: absolute;
-        top: 23%;
-        left: 30%;
+        top: 8%;
+        left: 70px;
         transform: translate(-50%, -50%);
         animation: from-top 1s;
         user-select: none;
+
+        @media screen and (max-width: 674px) {
+            left: 90px;
+        }
+
+        @media screen and (max-width: 635px) {
+            left: 116px;
+        }
+
+        @media screen and (max-width: 576px) {
+            left: 150px;
+        }        
+
+        @media screen and (max-width: 513px) {
+            left: 180px;
+        }          
+        
+        @media screen and (max-width: 451px) {
+            left: 210px;
+        } 
+        
+        @media screen and (max-width: 390px) {
+            left: 230px;
+        }   
+        
+        @media screen and (max-width: 354px) {
+            left: 255px;
+        }        
     }
 
     .Lang{
         color: #fff;
         position: absolute;
-        top: 27%;
-        left: 67%;
+        top: 15%;
+        right: 0;
         transform: translate(-50%, -50%);
         animation: from-bottom 1s;
+
+        @media screen and (max-width: 512px) {
+            right: 50px;
+        }     
+        
+        @media screen and (max-width: 411px) {
+            right: 100px;
+        }        
 
         span{
             color: #fff;
@@ -71,12 +203,20 @@
             height: 40px;
             border-radius: 10px;
             outline: none;
-            border: 1px solid #fff;
+            border: 2px solid #fff;
             background-color: transparent;  
             transition: 0.7s;
             padding-left: 10px;
             animation: from-bottom 1s;
             color: #fff;
+
+            @media screen and (max-width: 545px) {
+                width: 400px;
+            }    
+            
+            @media screen and (max-width: 456px) {
+                width: 300px;
+            }            
 
             &:hover, &:focus-within{
                 background-color: #fff;
@@ -99,6 +239,20 @@
             user-select: none;
             cursor: pointer;
             animation: fade-in 1s;
+            white-space: nowrap;
+
+            @media screen and (max-width: 665px) {
+                white-space: wrap;
+            }            
+
+            @media screen and (max-width: 584px) {
+                margin-left: 310px;
+            }
+
+            @media screen and (max-width: 456px) {
+                margin-left: 150px;
+                transform: translate(90px);
+            }            
         }
     }
 
@@ -112,6 +266,10 @@
         user-select: none;
         font-weight: 500;
         animation: fade-in 1s;
+
+        @media screen and (max-width: 584px) {
+            left: 40px;
+        }        
 
         &:hover{
             color: #747bff;
@@ -155,6 +313,31 @@
     border-radius: 10px;
     background-color: #fff;
 
+    @media screen and (max-width: 732px) {
+        width: 600px;
+    }
+
+    @media screen and (max-width: 572px) {
+        width: 500px;
+    }
+
+    @media screen and (max-width: 517px) {
+        width: 425px;
+    }
+
+    @media screen and (max-width: 441px) {
+        width: 370px;
+    }
+
+    @media screen and (max-width: 391px) {
+        width: 350px;
+        height: 550px;
+    }     
+    
+    @media screen and (max-width: 366px) {
+        width: 300px;
+    } 
+
     .VerifyPageTitle{
         position: absolute;
         top: 2%;
@@ -162,6 +345,15 @@
         transform: translate(-50%);
         white-space: nowrap;
         user-select: none;
+        animation: from-bottom 1s;
+
+        @media screen and (max-width: 517px) {
+           font-size: 40px;
+        }
+
+        @media screen and (max-width: 391px) {
+            font-size: 31px;
+        }   
     }
 
     .VerifyButton{
@@ -175,6 +367,11 @@
         background-color: transparent;
         border: 1px solid #111;
         user-select: none;
+        animation: from-bottom 1s;
+
+        @media screen and (max-width: 366px) {
+            width: 250px;
+        }         
     }
 
     .VerifyInfo{
@@ -185,6 +382,35 @@
         text-align: center;
         width: 650px;
         font-weight: 500;
+        animation: from-top 1s;
+
+        @media screen and (max-width: 732px) {
+            width: 550px;
+            bottom: 105px;
+        }
+
+        @media screen and (max-width: 572px) {
+            width: 450px;
+        }
+
+        @media screen and (max-width: 517px) {
+           width: 400px;
+        }
+
+        @media screen and (max-width: 441px) {
+            width: 370px;
+            bottom: 80px;
+        }
+
+        @media screen and (max-width: 391px) {
+            width: 350px;
+            bottom: 90px;
+        }  
+        
+        @media screen and (max-width: 366px) {
+            width: 250px;
+            bottom: 80px;
+        }         
     }
 
     .sendMessageAgain{
@@ -198,6 +424,11 @@
         white-space: nowrap;
         cursor: pointer;
         user-select: none;
+        animation: fade-in 1s;
+
+        @media screen and (max-width: 366px) {
+            font-size: 19px;
+        }
     }
 }
 
@@ -206,6 +437,14 @@
         opacity: 0.6;
         scale: 0.93;
         margin-top: -10px;
+    }
+}
+
+@keyframes from-left {
+    from{
+        opacity: 0.6;
+        scale: 0.93;
+        margin-left: -30px;
     }
 }
 

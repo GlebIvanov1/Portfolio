@@ -47,7 +47,7 @@
     }
 
     .Links{
-        display: flex;
+        display: flex;  
         justify-content: flex-end;
         margin-right: 150px;
 
@@ -88,6 +88,7 @@
             animation: from-blottom-to-top 1s;
             overflow: hidden;
             user-select: none;
+            z-index: 1000 !important;
 
             &::before{
                 content: '';
@@ -128,21 +129,21 @@
     }
 
     .menuOpenLoginWrapper{
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translate(-50%);
 
         .menuOpenLogin{
-            position: absolute;
             white-space: nowrap;
             color: #1f1f1f;
             font-size: 20px;
-            bottom: 30px;
-            left: 50%;
-            transform: translate(-50%);
         }
     }
 
     .MenuOpenProjectWrapper{
         position: absolute;
-        top: 35%;
+        top: 30%;
         width: 400px;
         height: 55px;
         border-radius: 10px;
@@ -197,13 +198,17 @@
     }
 
     .ContactWrapper{
-        top: 60%;
+        top: 50%;
         transform: translateY(-50%);
         box-shadow: -130px 20px 130px #fff;
 
         &:hover{
             transform: translateY(-70%);
         }
+    }
+
+    .SettingWrapper{
+        top: 63%;
     }
 }
 
